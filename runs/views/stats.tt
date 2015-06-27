@@ -1,0 +1,9 @@
+<h3>Current Running logs:</h3>
+<% IF rows.size == 0 %>
+  There are no running logs for this user !
+<% ELSE %>
+  <% FOREACH r IN rows %>
+    <% r.date %> |<% r.time %>| <% r.distance %>|<% r.description %>
+    <br/>
+  <% END %>
+<% END %>

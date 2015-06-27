@@ -1,22 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
-<title>runs</title>
-<link rel="stylesheet" href="<% request.uri_base %>/css/style.css" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Grab jQuery from a CDN, fall back to local if necessary -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript">/* <![CDATA[ */
-    !window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.min.js"><\/script>')
-/* ]]> */</script>
+    <meta name="description" content="Running logs">
+    <meta name="author" content="Yoncho Yonchev">
+    <link rel="icon" href="../../favicon.ico">
 
-</head>
-<body>
-<% content %>
-<div id="footer">
-Powered by <a href="http://perldancer.org/">Dancer</a> <% dancer_version %>
-</div>
-</body>
+    <title>Running logs</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<% request.uri_base %>/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Home</a>
+          <a class="navbar-brand" href="/login">Login</a>
+          <a class="navbar-brand" href="/add">Add Log</a>
+          <a class="navbar-brand" href="/stats">Statistics</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Hello running world!</h1>
+        <p>The main idea about this site is to provide you the oportunity to log your runs and show some statistical data using diagrams about your time. We eally hope in that way you will enjoy running and make your runs a lot more fun. </p>
+        <!-- <p><a class="btn btn-primary btn-lg" href="/" role="button">Back Home &raquo;</a></p>-->
+
+           <div class="control-group">
+          <div class="fb-share-button" data-href="http://0.0.0.0:3000/" data-layout="button_count"></div>
+          <div>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://0.0.0.0:3000/" data-text="My running app bitches" data-via="_yonchoy" data-size="large" data-hashtags="running">Tweet</a>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <% content %>
+    </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Yoncho Yonchev 2015</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="<% request.uri_base %>/javascript/jquery.min.js"></script>
+    <script src="<% request.uri_base %>/javascript/bootstrap.min.js"></script>
+    <!-- facebook share button -->
+    <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=133364853380998";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+     <!-- twitter share button -->
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  </body>
 </html>
+

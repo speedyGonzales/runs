@@ -1,0 +1,25 @@
+<div class="span6">
+      <form class="form-horizontal well" method="post"
+          action="/stats">
+        <fieldset>
+          <legend>Login form</legend>
+
+          <div class="control-group">
+            <label class="control-label" for="user">Username</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="user"
+                  name="username"/>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="pass1">Password</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="pass"
+                  name="password"/>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </fieldset>
+      </form>
+    </div>

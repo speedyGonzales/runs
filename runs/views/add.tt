@@ -1,0 +1,26 @@
+<div class="span6">
+      <form class="form-horizontal well" method="post"
+          action="[% request.uri_base %]/navbar_login">
+        <fieldset>
+          <legend>Submit a Running Logs</legend>
+
+          <div class="control-group">
+            <label class="control-label" for="description">Description</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="description"
+                  name="description"/>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="distance">Distance</label>
+            <div class="controls">
+              <input type="number" class="input-xlarge" id="distance"
+                  name="distance"/>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Add Log</button>
+        </fieldset>
+      </form>
+    </div>

@@ -1,4 +1,4 @@
-# This is the main configuration file of your Dancer app 
+# This is the main configuration file of your Dancer app
 # env-related settings should go to environments/$env.yml.
 # All the settings in this file will be loaded at Dancer's startup.
 
