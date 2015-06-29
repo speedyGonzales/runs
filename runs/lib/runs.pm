@@ -5,6 +5,15 @@ use warnings;
 use v5.018;
 
 use Dancer ':syntax';
+use Dancer::Plugin::Ajax;
+use Dancer::Plugin::FlashMessage;
+
+use Dancer::Plugin::DBIC;
+use Authen::Passphrase::SaltedDigest;
+
+
+use POSIX qw(strftime);
+
 
 our $VERSION = '0.1';
 
@@ -26,54 +35,94 @@ get '/stats' => sub {
     template 'stats';
 };
 
-#login form
-# post '/login' => sub {
-#     my $user = param 'user' ;
-#     my $pass = param 'pass' ;
+#the post processing part
+any ['get', 'post'] => '/login' => sub {
 
-#     if (length($user)==0) {
-#         return template '/login', {
-#             show_warning => "Please enter username" };
-#     }
-#     if (length($pass)==0) {
-#         return template '/login', {
-#             show_warning => "Please enter password" };
-#     }
+     if ( request->method() eq "POST" ) {
+       # process form input
+       my $user_rs = schema('default')->resultset('User');
 
-#     my $dsn = "dbi:SQLite:dbname=foo.sqlite";
+       if (! $user_rs->find({
+        username => param('user') },{ password => param('pass') }) ) {
+         flash error => "unsuccesful login";
+       }else {
+        my $u=$user_rs->find({
+        username => param('user') },{ password => param('pass') });
+         session 'logged_in' => true;
+         session 'user_id' => $u->id;
+         return template '/stats';
+         flash success =>'You are logged in.';
+       }
+    }
 
-#     my $dbh = DBI->connect($dsn, $user, $password, {
-#        PrintError       => 0,
-#        RaiseError       => 1,
-#        AutoCommit       => 1,
-#        FetchHashKeyName => 'NAME_lc',
-#     });
+    # display login form
+    return template 'login';
+  };
 
-#     my $sql = 'SELECT * FROM users WHERE username =? AND password= ?';
-#     my $sth = $dbh->prepare($sql);
-#     $sth->execute($user,$pass);
+post '/' => sub {
 
-#     @row = $sth->fetchrow_array();
-#     my $size = @row;
+     if ( request->method() eq "POST" ) {
+       # process form input
+       my $user_rs = schema('default')->resultset('User');
 
-#     if($size == 0){
-#          return template '/login', {
-#             show_warning => "There arent such user" };
-#     }
+       if (!param('user') ) {
+         flash error => "unsuccesful login";
+       }else {
+         $user_rs->create({
+            password=>param('pass1'),
+            username=>param('user'),
+            first_name=>param('fname'),
+            last_name=>param('lname'),
+            email=>param('email'),
+            is_admin=>0,
+            date_joined=> strftime "%m/%d/%Y", localtime
+          });
+         return template '/login';
+         flash success =>'You are registered.';
+       }
+    }
 
-#     my $sql = 'SELECT * FROM logs';
-#     my $sth = $dbh->prepare($sql);
-#     $sth->execute();
+    return template 'index';
+  };
 
-#     @result = $sth->fetchrow_array();
-#     template 'stats', { data => $sth };
-# };
+  post '/add' => sub {
 
-# #login form
-# post '/' => sub {
-#     $sql = 'SELECT * FROM users WHERE username =? AND password= ?';
-#     $sth = $dbh->prepare($sql);
-#     $sth->execute($user,$pass);
-# };
+     if ( request->method() eq "POST" ) {
+       # process form input
+       my $log_rs = schema('default')->resultset('Log');
+       my $uID=session 'user_id';
+       if (!$uID ) {
+         flash error => "login first";
+       }else {
+         $log_rs->create({
+            user_id=> $uID,
+            description=>param('description'),
+            distance=>param('distance'),
+            date=> strftime "%m/%d/%Y", localtime
+          });
+         return template '/stats';
+         flash success =>'You have added a log.';
+       }
+    }
+
+    return template 'add';
+  };
+
+
+
+ajax '/stats' => sub {
+    #here we will unpack the resultset from the select all from logs
+    my @cat;
+    my @dis;
+    my $log_rs = schema('default')->resultset('Log');
+    while (my $log = $log_rs->next) {
+       push @cat, $log->description;
+       push @dis, $log->distance;
+    }
+    return template 'stats',{
+      'cat' => @cat,
+      'dis' => @dis,
+    };
+};
 
 true;

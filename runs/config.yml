@@ -27,6 +27,16 @@ template: "simple"
 #     start_tag: '[%'
 #     end_tag:   '%]'
 
+session: Simple
+serializer: "JSON"
+
+plugins:
+  DBIC:
+    default:
+      dsn: "dbi:SQLite:dbname=foo.sqlite"
+      schema_class: MyApp::Schema
+
+
 # For session support enable the following line and see Dancer::Session
 # session: "YAML"
 

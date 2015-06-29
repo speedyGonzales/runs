@@ -1,14 +1,14 @@
 <div class="span6">
       <form class="form-horizontal well" method="post"
-          action="/stats">
+          action="/login">
         <fieldset>
-          <legend>Login form</legend>
+          <legend>User area</legend>
 
           <div class="control-group">
             <label class="control-label" for="user">Username</label>
             <div class="controls">
               <input type="text" class="input-xlarge" id="user"
-                  name="username"/>
+                  name="user"/>
             </div>
           </div>
 
@@ -16,7 +16,7 @@
             <label class="control-label" for="pass1">Password</label>
             <div class="controls">
               <input type="text" class="input-xlarge" id="pass"
-                  name="password"/>
+                  name="pass"/>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Login</button>

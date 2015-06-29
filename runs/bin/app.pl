@@ -4,10 +4,10 @@ use warnings;
 use v5.018;
 
 use Dancer;
-use Dancer::Plugin::Database;
+#use Dancer::Plugin::Database;
 use Dancer::Plugin::SimpleCRUD;
 
-use DBI;
+
 
 use runs;
 
@@ -18,15 +18,17 @@ set warnings => 1;
 
 
 
-post '/login' => sub {
-    # Validate the username and password they supplied
-    if (params->{user} eq 'admin' && params->{pass} eq 'admin') {
-        session user => params->{user};
-        redirect params->{path} || '/';
-    } else {
-        redirect '/login?failed=1';
-    }
-};
 
+
+# my $fred = $users_rs->create({
+#   realname => 'Fred Bloggs',
+#   username => 'fred',
+#   password => Authen::Passphrase::SaltedDigest->new(
+#      algorithm => "SHA-1",
+#      salt_random => 20,
+#      passphrase => 'mypass',
+#   ),
+#   email => 'fred@bloggs.com',
+# });
 
 dance;

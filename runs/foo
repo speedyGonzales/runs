@@ -1,0 +1,19 @@
+CREATE TABLE "users" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "password" varchar(128) NOT NULL,
+    "username" varchar(30) NOT NULL UNIQUE,
+    "first_name" varchar(30) NOT NULL,
+    "last_name" varchar(30) NOT NULL,
+    "email" varchar(75) NOT NULL,
+    "is_admin" bool NOT NULL,
+    "date_joined" datetime NOT NULL
+);
+;
+CREATE TABLE "logs" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "user_id" integer NOT NULL REFERENCES "users" ("id"),
+     "date" datetime NOT NULL,
+    "description" text NOT NULL,
+    "distance" integer NOT NULL,
+     "time" datetime NOT NULL
+);

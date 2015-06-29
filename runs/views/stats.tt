@@ -1,9 +1,52 @@
 <h3>Current Running logs:</h3>
-<% IF rows.size == 0 %>
+<% IF cat.size == 0 %>
   There are no running logs for this user !
 <% ELSE %>
-  <% FOREACH r IN rows %>
-    <% r.date %> |<% r.time %>| <% r.distance %>|<% r.description %>
+  <% FOREACH c IN cat %>
+    <% c %>
     <br/>
   <% END %>
 <% END %>
+
+<div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <script type="text/javascript">
+$(function () {
+         var cat=[];
+         var dat=[];
+
+          $.getJSON('/stats', function(response) {
+                cat.push(responce.cat);
+                dat.push(responce.dis)
+          }
+
+        $('#chart').highcharts({
+            title: {
+                text: 'My Training progress',
+                x: -20 //center
+            },
+
+            yAxis: {
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+              xAxis: {
+                categories: cat
+            },
+            series: [{
+                name: 'distance',
+                data: dat
+            }]
+        });
+    });
+
+    </script>

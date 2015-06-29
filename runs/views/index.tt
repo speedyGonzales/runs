@@ -1,6 +1,6 @@
 <div class="span6">
       <form class="form-horizontal well" method="post"
-          action="[% request.uri_base %]/navbar_login">
+          action="/">
         <fieldset>
           <legend>Register about Running Logs</legend>
 
@@ -8,7 +8,7 @@
             <label class="control-label" for="fname">First name:</label>
             <div class="controls">
               <input type="text" class="input-xlarge" id="fname"
-                  name="username"/>
+                  name="fname"/>
             </div>
           </div>
 
@@ -16,21 +16,21 @@
             <label class="control-label" for="lname">Last name:</label>
             <div class="controls">
               <input type="text" class="input-xlarge" id="lname"
-                  name="username"/>
+                  name="lname"/>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label" for="user">Username:</label>
             <div class="controls">
-              <input type="text" class="input-xlarge" id="user"/>
+              <input type="text" class="input-xlarge" id="user" name="user"/>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label" for="email">Email</label>
             <div class="controls">
-              <input type="text" class="input-xlarge" id="email" />
+              <input type="text" class="input-xlarge" id="email" name="email"/>
             </div>
           </div>
 
@@ -38,7 +38,7 @@
           <div class="control-group">
             <label class="control-label" for="pass1">Password</label>
             <div class="controls">
-              <input type="text" class="input-xlarge" id="pass1" />
+              <input type="text" class="input-xlarge" id="pass1" name="pass1"/>
             </div>
           </div>
 
@@ -46,7 +46,7 @@
           <div class="control-group">
             <label class="control-label" for="pass2">Repeat password</label>
             <div class="controls">
-              <input type="text" class="input-xlarge" id="pass2"/>
+              <input type="text" class="input-xlarge" id="pass2" name="pass2"/>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Register</button>

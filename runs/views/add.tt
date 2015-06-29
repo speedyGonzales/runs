@@ -1,6 +1,6 @@
 <div class="span6">
       <form class="form-horizontal well" method="post"
-          action="[% request.uri_base %]/navbar_login">
+          action="/add">
         <fieldset>
           <legend>Submit a Running Logs</legend>
 

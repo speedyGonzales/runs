@@ -46,6 +46,12 @@
     </div>
 
     <div class="container">
+      <% IF flash.error %>
+         <div class=error> <% flash.error %> </div>
+          <div class=error> <% flash.warning %> </div>
+          <div class=error> <% flash.success %> </div>
+      <% END %>
+
       <% content %>
     </div>
 
