@@ -1,27 +1,46 @@
 <h3>Current Running logs:</h3>
-<% IF cat.size == 0 %>
-  There are no running logs for this user !
-<% ELSE %>
-  <% FOREACH c IN cat %>
-    <% c %>
-    <br/>
-  <% END %>
-<% END %>
+
+<!--
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Distance</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% FOR e IN data %>
+    <script type="text/javascript">
+        console.log(<% e %>);
+    </script>
+    <tr class="success">
+       <td> <% e.cat %> </td> <td> <% e.dat %> </td>
+    </tr>
+    <% END %>
+    </tbody>
+</table> -->
+
+
 
 <div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <script type="text/javascript">
-$(function () {
-         var cat=[];
-         var dat=[];
 
-          $.getJSON('/stats', function(response) {
-                cat.push(responce.cat);
-                dat.push(responce.dis)
-          }
+         var c='<% cat %>';
+         var cat= c.split(',');
+
+         var d='<% dat %>';
+         var dat1= d.split(',');
+
+         var dat=new Array();
+         for(var i=0; i<dat1.length;i++){
+            dat.push(parseInt(dat1[i]));
+         }
+
+$(function () {
 
         $('#chart').highcharts({
             title: {
-                text: 'My Training progress',
+                text: 'My Training logs',
                 x: -20 //center
             },
 
@@ -40,6 +59,7 @@ $(function () {
                 borderWidth: 0
             },
               xAxis: {
+                name: 'description',
                 categories: cat
             },
             series: [{

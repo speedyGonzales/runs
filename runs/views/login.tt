@@ -2,8 +2,8 @@
       <form class="form-horizontal well" method="post"
           action="/login">
         <fieldset>
-          <legend>User area</legend>
-
+          <legend>Please Login </legend>
+          <pre><kbd>Login if you have account, otherwise better regiter</pre>
           <div class="control-group">
             <label class="control-label" for="user">Username</label>
             <div class="controls">

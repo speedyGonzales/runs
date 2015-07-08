@@ -31,10 +31,21 @@ runs (Perl Dancer web project)
 
 2.2 Данните ще се пазят в база данни (sqlite3);
 
-2.3 Използване на ORM ;
+2.3 Използване на ORM na DBIx;
+
+Some not so trivial useful notes:
+after installing (sudo  cpanm  DBIx::Class::Schema::Loader )
+
+run in terminal:
+dbicdump MyApp::Schema dbi:sqlite:foo
+
+For salting passwords (sudo cpanm Authen::Passphrase::SaltedDigest)
+
+for messaging (sudo cpanm Dancer::Plugin::FlashMessage)
 
 2.4 Използване на highcharts (http://www.highcharts.com/) за представяне на статистическите данни;
 
 2.5 Интерфейс: Twitter Bootstrap.
+
 
 
